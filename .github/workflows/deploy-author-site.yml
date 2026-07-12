@@ -3,9 +3,6 @@ name: Deploy author site
 on:
   push:
     branches: [main, master]
-    paths:
-      - 'author-site/**'
-      - '.github/workflows/deploy-author-site.yml'
   workflow_dispatch:
 
 permissions:
