@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — WG Docent</title>
+  <meta name="description" content="Contact WG Docent for press, events, and release updates.">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="WG Docent home">
+        <img src="assets/logo.png" alt="WG Docent">
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="book.html">The Book</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="section-inner">
+        <p class="eyebrow">Get in touch</p>
+        <h1>Contact &amp; updates</h1>
+        <p class="lead">
+          For press, events, or release news about <em>Silas and the Wizard</em>, send a note below.
+        </p>
+
+        <div class="contact-panel">
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button class="button button-primary" type="submit">Send message</button>
+          </form>
+          <p class="note" style="margin-top:1rem;">
+            Replace the form action with your Formspree, Netlify Forms, or Buttondown signup URL before going live.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>&copy; <span id="year"></span> WG Docent. All rights reserved.</span>
+      <span>Pen name of the author of <em>Silas and the Wizard</em>.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
