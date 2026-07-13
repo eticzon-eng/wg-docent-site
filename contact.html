@@ -29,25 +29,32 @@
         <p class="eyebrow">Get in touch</p>
         <h1>Contact &amp; updates</h1>
         <p class="lead">
-          For press, events, or release news about <em>Silas and the Wizard</em>, send a note below.
+          Subscribe for release news about <em>Silas and the Wizard</em>, or visit the newsletter directly.
         </p>
 
-        <div class="contact-panel">
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" required>
+        <div class="contact-panel" id="subscribe">
+          <h2 style="margin-top:0;font-size:1.35rem;">Get release updates</h2>
+          <p>Join the mailing list — occasional notes from WG Docent when there is news worth sharing.</p>
+          <form
+            action="https://buttondown.com/api/emails/embed-subscribe/wgdocent"
+            method="post"
+            target="popupbutton"
+            class="buttondown-form"
+            onsubmit="window.open('https://buttondown.com/wgdocent', 'popupbutton')"
+          >
+            <label for="bd-email">Email</label>
+            <input id="bd-email" type="email" name="email" required>
 
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-
-            <button class="button button-primary" type="submit">Send message</button>
+            <button class="button button-primary" type="submit">Subscribe</button>
           </form>
           <p class="note" style="margin-top:1rem;">
-            Replace the form action with your Formspree, Netlify Forms, or Buttondown signup URL before going live.
+            Or subscribe at <a href="https://buttondown.com/wgdocent" target="_blank" rel="noopener">buttondown.com/wgdocent</a>.
           </p>
+        </div>
+
+        <div class="contact-panel" style="margin-top:1.5rem;">
+          <h2 style="margin-top:0;font-size:1.35rem;">Press &amp; other inquiries</h2>
+          <p>For press, events, or other questions, reply to any newsletter email once you are subscribed, or reach out through Buttondown.</p>
         </div>
       </div>
     </section>
