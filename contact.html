@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — WG Docent</title>
-  <meta name="description" content="Contact WG Docent for press, events, and release updates.">
+  <meta name="description" content="Subscribe for release updates from WG Docent, author of Silas and the Wizard.">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -26,35 +26,18 @@
   <main>
     <section class="hero">
       <div class="section-inner">
-        <p class="eyebrow">Get in touch</p>
-        <h1>Contact &amp; updates</h1>
+        <p class="eyebrow">Stay in touch</p>
+        <h1>Release updates</h1>
         <p class="lead">
-          Subscribe for release news about <em>Silas and the Wizard</em>, or visit the newsletter directly.
+          Subscribe for occasional news about <em>Silas and the Wizard</em> and other notes from WG Docent.
         </p>
 
-        <div class="contact-panel" id="subscribe">
-          <h2 style="margin-top:0;font-size:1.35rem;">Get release updates</h2>
-          <p>Join the mailing list — occasional notes from WG Docent when there is news worth sharing.</p>
-          <form
-            action="https://buttondown.com/api/emails/embed-subscribe/wgdocent"
-            method="post"
-            target="popupbutton"
-            class="buttondown-form"
-            onsubmit="window.open('https://buttondown.com/wgdocent', 'popupbutton')"
-          >
-            <label for="bd-email">Email</label>
-            <input id="bd-email" type="email" name="email" required>
-
-            <button class="button button-primary" type="submit">Subscribe</button>
-          </form>
-          <p class="note" style="margin-top:1rem;">
-            Or subscribe at <a href="https://buttondown.com/wgdocent" target="_blank" rel="noopener">buttondown.com/wgdocent</a>.
-          </p>
-        </div>
-
-        <div class="contact-panel" style="margin-top:1.5rem;">
-          <h2 style="margin-top:0;font-size:1.35rem;">Press &amp; other inquiries</h2>
-          <p>For press, events, or other questions, reply to any newsletter email once you are subscribed, or reach out through Buttondown.</p>
+        <div class="contact-embed" id="subscribe">
+          <iframe
+            src="https://buttondown.com/wgdocent?as_embed=true"
+            title="Subscribe to A letter from WG Docent"
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
     </section>
