@@ -285,6 +285,22 @@ a {
   flex-wrap: wrap;
 }
 
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-social a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.footer-social a:hover {
+  border-bottom-color: var(--ink);
+}
+
 .note {
   font-size: 0.92rem;
   color: var(--muted);
