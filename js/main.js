@@ -19,6 +19,11 @@ if (year) {
   }
 
   let activeForm = null;
+  let submittedEmail = "";
+
+  const fields = form.querySelector(".subscribe-form-fields");
+  const confirmation = form.querySelector("[data-subscribe-confirmation]");
+  const confirmationEmail = form.querySelector("[data-subscribe-email]");
 
   function setStatus(message, type) {
     const status = form.querySelector("[data-subscribe-status]");
@@ -28,18 +33,27 @@ if (year) {
     if (type) status.classList.add(type);
   }
 
+  function showConfirmation() {
+    if (confirmationEmail && submittedEmail) {
+      confirmationEmail.textContent = submittedEmail;
+    }
+    if (confirmation) confirmation.hidden = false;
+    if (fields) fields.setAttribute("aria-hidden", "true");
+    form.classList.add("is-confirmed");
+    setStatus("");
+  }
+
   responseFrame.addEventListener("load", function () {
     if (!activeForm) return;
 
-    setStatus(
-      "Almost done. Check your inbox to confirm your subscription. If you don't see it, check spam or junk.",
-      "is-success"
-    );
+    showConfirmation();
     activeForm.reset();
     activeForm = null;
   });
 
   form.addEventListener("submit", function () {
+    const emailInput = form.querySelector('input[name="email"]');
+    submittedEmail = emailInput instanceof HTMLInputElement ? emailInput.value.trim() : "";
     activeForm = form;
     form.target = frameName;
     setStatus("Submitting…");
