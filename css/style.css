@@ -269,17 +269,14 @@ a {
   max-width: 36rem;
 }
 
-.subscribe-form {
-  display: grid;
-  gap: 0.85rem;
+.subscribe-iframe-wrap iframe {
+  display: block;
+  width: 100%;
+  min-height: 320px;
+  border: 0;
 }
 
-.subscribe-form-fields {
-  display: grid;
-  gap: 0.85rem;
-}
-
-.subscribe-form.is-confirmed .subscribe-form-fields {
+.subscribe-iframe-wrap[hidden] {
   display: none;
 }
 
@@ -288,6 +285,7 @@ a {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 1.25rem 1.35rem;
+  margin-bottom: 1rem;
 }
 
 .subscribe-confirmation[hidden] {
@@ -308,57 +306,16 @@ a {
   margin: 0 0 0.75rem;
 }
 
-.subscribe-confirmation p:last-child {
-  margin-bottom: 0;
+.subscribe-confirmation p:last-of-type {
+  margin-bottom: 1rem;
 }
 
-.subscribe-label {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-
-.subscribe-input {
-  width: 100%;
-  padding: 0.8rem 0.95rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  font: inherit;
-  background: var(--paper);
-}
-
-.subscribe-input:focus {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
-}
-
-.subscribe-submit {
-  justify-self: start;
-  border: none;
+.subscribe-reset {
   cursor: pointer;
 }
 
-.subscribe-status {
-  min-height: 1.25rem;
-  margin: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.95rem;
-  color: var(--ink);
-}
-
-.subscribe-status.is-success {
-  color: #1f5f3a;
-}
-
-.subscribe-status.is-error {
-  color: #8b1e1e;
-}
-
 .subscribe-note {
-  margin: 0;
+  margin: 1rem 0 0;
 }
 
 .site-footer {

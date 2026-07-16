@@ -3,59 +3,45 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
-(function initSubscribeForm() {
-  const form = document.querySelector(".subscribe-form");
-  if (!form) return;
+(function initSubscribeEmbed() {
+  const embed = document.querySelector(".contact-embed");
+  if (!embed) return;
 
-  const frameName = "buttondown-subscribe-frame";
-  let responseFrame = document.querySelector(`iframe[name="${frameName}"]`);
-  if (!responseFrame) {
-    responseFrame = document.createElement("iframe");
-    responseFrame.name = frameName;
-    responseFrame.title = "Newsletter subscription response";
-    responseFrame.hidden = true;
-    responseFrame.tabIndex = -1;
-    document.body.appendChild(responseFrame);
-  }
+  const iframeWrap = embed.querySelector("[data-subscribe-iframe-wrap]");
+  const iframe = iframeWrap?.querySelector("iframe");
+  const confirmation = embed.querySelector("[data-subscribe-confirmation]");
+  const resetButton = embed.querySelector("[data-subscribe-reset]");
 
-  let activeForm = null;
-  let submittedEmail = "";
+  if (!iframe) return;
 
-  const fields = form.querySelector(".subscribe-form-fields");
-  const confirmation = form.querySelector("[data-subscribe-confirmation]");
-  const confirmationEmail = form.querySelector("[data-subscribe-email]");
-
-  function setStatus(message, type) {
-    const status = form.querySelector("[data-subscribe-status]");
-    if (!status) return;
-    status.textContent = message;
-    status.classList.remove("is-success", "is-error");
-    if (type) status.classList.add(type);
-  }
+  let iframeReady = false;
 
   function showConfirmation() {
-    if (confirmationEmail && submittedEmail) {
-      confirmationEmail.textContent = submittedEmail;
-    }
+    if (iframeWrap) iframeWrap.hidden = true;
     if (confirmation) confirmation.hidden = false;
-    if (fields) fields.setAttribute("aria-hidden", "true");
-    form.classList.add("is-confirmed");
-    setStatus("");
+    confirmation?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
-  responseFrame.addEventListener("load", function () {
-    if (!activeForm) return;
+  function showForm() {
+    if (confirmation) confirmation.hidden = true;
+    if (iframeWrap) iframeWrap.hidden = false;
+    iframe.src = iframe.src;
+  }
 
+  iframe.addEventListener("load", function () {
+    if (!iframeReady) return;
     showConfirmation();
-    activeForm.reset();
-    activeForm = null;
   });
 
-  form.addEventListener("submit", function () {
-    const emailInput = form.querySelector('input[name="email"]');
-    submittedEmail = emailInput instanceof HTMLInputElement ? emailInput.value.trim() : "";
-    activeForm = form;
-    form.target = frameName;
-    setStatus("Submitting…");
+  window.setTimeout(function () {
+    iframeReady = true;
+  }, 300);
+
+  resetButton?.addEventListener("click", function () {
+    iframeReady = false;
+    showForm();
+    window.setTimeout(function () {
+      iframeReady = true;
+    }, 300);
   });
 })();
