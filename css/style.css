@@ -265,15 +265,62 @@ a {
   background: white;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  overflow: hidden;
+  padding: 1.5rem;
   max-width: 36rem;
 }
 
-.contact-embed iframe {
-  display: block;
+.subscribe-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.subscribe-label {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.subscribe-input {
   width: 100%;
-  min-height: 320px;
-  border: 0;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--paper);
+}
+
+.subscribe-input:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.subscribe-submit {
+  justify-self: start;
+  border: none;
+  cursor: pointer;
+}
+
+.subscribe-status {
+  min-height: 1.25rem;
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.subscribe-status.is-success {
+  color: #1f5f3a;
+}
+
+.subscribe-status.is-error {
+  color: #8b1e1e;
+}
+
+.subscribe-note {
+  margin: 0;
 }
 
 .site-footer {
