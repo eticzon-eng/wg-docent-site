@@ -15,6 +15,7 @@ if (year) {
   if (!iframe) return;
 
   let iframeReady = false;
+  let initialIframeLoad = true;
 
   function showConfirmation() {
     if (iframeWrap) iframeWrap.hidden = true;
@@ -29,6 +30,10 @@ if (year) {
   }
 
   iframe.addEventListener("load", function () {
+    if (initialIframeLoad) {
+      initialIframeLoad = false;
+      return;
+    }
     if (!iframeReady) return;
     showConfirmation();
   });
@@ -39,6 +44,7 @@ if (year) {
 
   resetButton?.addEventListener("click", function () {
     iframeReady = false;
+    initialIframeLoad = true;
     showForm();
     window.setTimeout(function () {
       iframeReady = true;
