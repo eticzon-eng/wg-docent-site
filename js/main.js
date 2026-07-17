@@ -11,11 +11,13 @@ if (year) {
   const iframe = iframeWrap?.querySelector("iframe");
   const confirmation = embed.querySelector("[data-subscribe-confirmation]");
   const resetButton = embed.querySelector("[data-subscribe-reset]");
+  const embedUrl = "https://buttondown.com/wgdocent?as_embed=true";
 
   if (!iframe) return;
 
   let iframeReady = false;
-  let initialIframeLoad = true;
+  let loadsToIgnore = 1;
+  let suppressConfirmationUntil = 0;
 
   function showConfirmation() {
     if (iframeWrap) iframeWrap.hidden = true;
@@ -26,28 +28,37 @@ if (year) {
   function showForm() {
     if (confirmation) confirmation.hidden = true;
     if (iframeWrap) iframeWrap.hidden = false;
-    iframe.src = iframe.src;
+    iframe.src = embedUrl + "&_=" + Date.now();
+  }
+
+  function shouldIgnoreLoad() {
+    if (loadsToIgnore > 0) {
+      loadsToIgnore -= 1;
+      return true;
+    }
+    if (Date.now() < suppressConfirmationUntil) {
+      return true;
+    }
+    return false;
   }
 
   iframe.addEventListener("load", function () {
-    if (initialIframeLoad) {
-      initialIframeLoad = false;
-      return;
-    }
+    if (shouldIgnoreLoad()) return;
     if (!iframeReady) return;
     showConfirmation();
   });
 
   window.setTimeout(function () {
     iframeReady = true;
-  }, 300);
+  }, 500);
 
   resetButton?.addEventListener("click", function () {
     iframeReady = false;
-    initialIframeLoad = true;
+    loadsToIgnore = 4;
+    suppressConfirmationUntil = Date.now() + 4000;
     showForm();
     window.setTimeout(function () {
       iframeReady = true;
-    }, 300);
+    }, 500);
   });
 })();
