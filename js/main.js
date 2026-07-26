@@ -77,6 +77,10 @@ if (year) {
   let currentIndex = -1;
   let lastFocused = null;
 
+  function isOpen() {
+    return lightbox.classList.contains("is-open");
+  }
+
   function show(index) {
     if (index < 0 || index >= items.length) return;
     currentIndex = index;
@@ -85,10 +89,11 @@ if (year) {
     const figure = button.closest("figure");
     if (!img) return;
 
-    image.src = img.src;
+    image.src = img.currentSrc || img.src;
     image.alt = img.alt;
-    caption.textContent = figure?.querySelector("figcaption")?.textContent || "";
+    caption.textContent = figure ? (figure.querySelector("figcaption")?.textContent || "") : "";
     lightbox.hidden = false;
+    lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
     closeButton?.focus();
@@ -96,11 +101,14 @@ if (year) {
 
   function hide() {
     lightbox.hidden = true;
+    lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-    image.src = "";
+    image.removeAttribute("src");
+    image.alt = "";
+    caption.textContent = "";
     currentIndex = -1;
-    lastFocused?.focus();
+    if (lastFocused) lastFocused.focus();
   }
 
   function showRelative(step) {
@@ -109,11 +117,11 @@ if (year) {
     show(nextIndex);
   }
 
-  gallery.addEventListener("click", function (event) {
-    const button = event.target.closest("[data-gallery-open]");
-    if (!button) return;
-    lastFocused = button;
-    show(items.indexOf(button));
+  items.forEach(function (button, index) {
+    button.addEventListener("click", function () {
+      lastFocused = button;
+      show(index);
+    });
   });
 
   closeButton?.addEventListener("click", hide);
@@ -124,12 +132,16 @@ if (year) {
     showRelative(1);
   });
 
+  lightbox.querySelector(".lightbox-figure")?.addEventListener("click", function (event) {
+    event.stopPropagation();
+  });
+
   lightbox.addEventListener("click", function (event) {
     if (event.target === lightbox) hide();
   });
 
   document.addEventListener("keydown", function (event) {
-    if (lightbox.hidden) return;
+    if (!isOpen()) return;
     if (event.key === "Escape") hide();
     if (event.key === "ArrowLeft") showRelative(-1);
     if (event.key === "ArrowRight") showRelative(1);

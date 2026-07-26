@@ -223,7 +223,6 @@ a {
   margin: 0;
   background: white;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
   overflow: hidden;
 }
 
@@ -250,6 +249,7 @@ a {
 
 .gallery-thumb img {
   width: 100%;
+  pointer-events: none;
   transition: opacity 0.15s ease;
 }
 
@@ -273,11 +273,15 @@ a {
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
   background: rgba(26, 26, 26, 0.92);
+}
+
+.lightbox.is-open {
+  display: flex;
 }
 
 .lightbox[hidden] {
@@ -298,7 +302,6 @@ a {
   max-height: calc(100vh - 6rem);
   width: auto;
   height: auto;
-  border-radius: 8px;
   background: white;
 }
 
