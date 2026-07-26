@@ -234,6 +234,124 @@ a {
   color: var(--muted);
 }
 
+.gallery-page {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.gallery-thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  line-height: 0;
+}
+
+.gallery-thumb img {
+  width: 100%;
+  transition: opacity 0.15s ease;
+}
+
+.gallery-thumb:hover img,
+.gallery-thumb:focus-visible img {
+  opacity: 0.92;
+}
+
+.gallery-thumb:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.gallery-footer-note {
+  margin: 2rem 0 0;
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(26, 26, 26, 0.92);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-figure {
+  margin: 0;
+  max-width: min(960px, 100%);
+  max-height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: calc(100vh - 6rem);
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  background: white;
+}
+
+.lightbox-caption {
+  margin-top: 0.85rem;
+  color: rgba(250, 248, 244, 0.88);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 36rem;
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1;
+  transition: opacity 0.15s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover,
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  opacity: 0.75;
+}
+
+.lightbox-close {
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 2.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.75rem;
+  padding: 0.5rem 0.85rem;
+}
+
+.lightbox-prev {
+  left: 0.5rem;
+}
+
+.lightbox-next {
+  right: 0.5rem;
+}
+
 .book-meta {
   display: grid;
   gap: 0.75rem;

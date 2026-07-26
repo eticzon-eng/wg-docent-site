@@ -62,3 +62,76 @@ if (year) {
     }, 500);
   });
 })();
+
+(function initGalleryLightbox() {
+  const gallery = document.querySelector("[data-gallery]");
+  const lightbox = document.querySelector("[data-lightbox]");
+  if (!gallery || !lightbox) return;
+
+  const image = lightbox.querySelector("[data-lightbox-image]");
+  const caption = lightbox.querySelector("[data-lightbox-caption]");
+  const closeButton = lightbox.querySelector("[data-lightbox-close]");
+  const prevButton = lightbox.querySelector("[data-lightbox-prev]");
+  const nextButton = lightbox.querySelector("[data-lightbox-next]");
+  const items = Array.from(gallery.querySelectorAll("[data-gallery-open]"));
+  let currentIndex = -1;
+  let lastFocused = null;
+
+  function show(index) {
+    if (index < 0 || index >= items.length) return;
+    currentIndex = index;
+    const button = items[index];
+    const img = button.querySelector("img");
+    const figure = button.closest("figure");
+    if (!img) return;
+
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = figure?.querySelector("figcaption")?.textContent || "";
+    lightbox.hidden = false;
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeButton?.focus();
+  }
+
+  function hide() {
+    lightbox.hidden = true;
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    image.src = "";
+    currentIndex = -1;
+    lastFocused?.focus();
+  }
+
+  function showRelative(step) {
+    if (currentIndex < 0) return;
+    const nextIndex = (currentIndex + step + items.length) % items.length;
+    show(nextIndex);
+  }
+
+  gallery.addEventListener("click", function (event) {
+    const button = event.target.closest("[data-gallery-open]");
+    if (!button) return;
+    lastFocused = button;
+    show(items.indexOf(button));
+  });
+
+  closeButton?.addEventListener("click", hide);
+  prevButton?.addEventListener("click", function () {
+    showRelative(-1);
+  });
+  nextButton?.addEventListener("click", function () {
+    showRelative(1);
+  });
+
+  lightbox.addEventListener("click", function (event) {
+    if (event.target === lightbox) hide();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (lightbox.hidden) return;
+    if (event.key === "Escape") hide();
+    if (event.key === "ArrowLeft") showRelative(-1);
+    if (event.key === "ArrowRight") showRelative(1);
+  });
+})();
