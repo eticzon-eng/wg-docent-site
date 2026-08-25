@@ -89,6 +89,61 @@ a {
   border-bottom-color: var(--ink);
 }
 
+.launch-banner {
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+  padding: 0.7rem 1rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+.launch-banner a {
+  color: var(--paper);
+}
+
+.launch-banner strong {
+  font-weight: 700;
+}
+
+.preorder {
+  padding: 1.75rem 0 0.5rem;
+}
+
+.preorder-graphic {
+  display: block;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.preorder-graphic img {
+  width: 100%;
+  height: auto;
+}
+
+.preorder-graphic[aria-disabled="true"] {
+  cursor: default;
+}
+
+.preorder-actions {
+  justify-content: center;
+  margin-top: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.button[aria-disabled="true"] {
+  opacity: 0.72;
+  cursor: default;
+}
+
+.button[aria-disabled="true"]:hover {
+  transform: none;
+}
+
 .hero {
   padding: 4rem 0 3rem;
 }

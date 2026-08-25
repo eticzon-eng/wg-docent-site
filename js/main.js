@@ -3,6 +3,39 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
+// Paste the Amazon KDP pre-order URL here when it is live.
+const PREORDER_URL = "";
+const PREORDER_LABEL_SOON = "Pre-order coming soon";
+const PREORDER_LABEL_LIVE = "Pre-order the ebook";
+
+function setupPreorder() {
+  const ready = Boolean(PREORDER_URL && PREORDER_URL.trim());
+  document.querySelectorAll("[data-preorder]").forEach((el) => {
+    if (ready) {
+      el.setAttribute("href", PREORDER_URL);
+      el.removeAttribute("aria-disabled");
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener noreferrer");
+      if (el.classList.contains("button")) {
+        el.textContent = PREORDER_LABEL_LIVE;
+      }
+      return;
+    }
+
+    el.setAttribute("aria-disabled", "true");
+    if (el.classList.contains("button")) {
+      el.textContent = PREORDER_LABEL_SOON;
+    }
+    el.addEventListener("click", (event) => {
+      if (el.classList.contains("preorder-graphic")) {
+        event.preventDefault();
+      }
+    });
+  });
+}
+
+setupPreorder();
+
 (function initSubscribeEmbed() {
   const embed = document.querySelector(".contact-embed");
   if (!embed) return;
