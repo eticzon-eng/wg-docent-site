@@ -4,7 +4,7 @@ if (year) {
 }
 
 // Paste the Amazon KDP pre-order URL here when it is live.
-const PREORDER_URL = "";
+const PREORDER_URL = "https://a.co/d/0j0g4wAm";
 const PREORDER_LABEL_SOON = "Pre-order coming soon";
 const PREORDER_LABEL_LIVE = "Pre-order the ebook";
 
