@@ -494,6 +494,57 @@ a {
   margin: 1rem 0 0;
 }
 
+.contact-direct {
+  margin-top: 2.5rem;
+  max-width: 36rem;
+}
+
+.contact-direct h2 {
+  font-size: 1.45rem;
+  margin: 0 0 0.65rem;
+}
+
+.contact-direct p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+.contact-direct p a {
+  color: var(--ink);
+}
+
+.contact-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.contact-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.88rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.contact-social a:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact-social svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
+  flex-shrink: 0;
+}
+
 .site-footer {
   padding: 2rem 0 3rem;
   border-top: 1px solid var(--line);
