@@ -135,6 +135,35 @@ a {
   margin-bottom: 0.5rem;
 }
 
+.content-note {
+  max-width: 42rem;
+  margin: 1.25rem auto 0;
+  padding: 1rem 1.15rem;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--ink);
+  border-radius: 8px;
+}
+
+.content-note-label {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.content-note p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.hero .content-note {
+  margin: 1.25rem 0 0;
+  max-width: 38rem;
+}
+
 .button[aria-disabled="true"] {
   opacity: 0.72;
   cursor: default;
