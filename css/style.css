@@ -111,12 +111,30 @@ a {
   padding: 1.75rem 0 0.5rem;
 }
 
-.preorder-graphic {
-  display: block;
+.preorder-card {
   background: white;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.preorder-card .content-note {
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-deep);
+  padding: 1.1rem 1.35rem;
+}
+
+.preorder-graphic {
+  display: block;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
 }
 
