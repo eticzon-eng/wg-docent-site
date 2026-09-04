@@ -3,38 +3,25 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
-// Paste the Amazon KDP pre-order URL here when it is live.
-const PREORDER_URL = "https://a.co/d/0j0g4wAm";
-const PREORDER_LABEL_SOON = "Pre-order coming soon";
-const PREORDER_LABEL_LIVE = "Pre-order the ebook";
+const EBOOK_URL = "https://a.co/d/0j0g4wAm";
+const PAPERBACK_URL = "https://www.amazon.com/dp/B0HGTQZ63H";
+const EBOOK_LABEL = "Buy the ebook";
+const PAPERBACK_LABEL = "Buy the paperback";
 
-function setupPreorder() {
-  const ready = Boolean(PREORDER_URL && PREORDER_URL.trim());
-  document.querySelectorAll("[data-preorder]").forEach((el) => {
-    if (ready) {
-      el.setAttribute("href", PREORDER_URL);
-      el.removeAttribute("aria-disabled");
-      el.setAttribute("target", "_blank");
-      el.setAttribute("rel", "noopener noreferrer");
-      if (el.classList.contains("button")) {
-        el.textContent = PREORDER_LABEL_LIVE;
-      }
-      return;
-    }
-
-    el.setAttribute("aria-disabled", "true");
+function setupBuyLinks(selector, url, buttonLabel) {
+  document.querySelectorAll(selector).forEach((el) => {
+    el.setAttribute("href", url);
+    el.removeAttribute("aria-disabled");
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener noreferrer");
     if (el.classList.contains("button")) {
-      el.textContent = PREORDER_LABEL_SOON;
+      el.textContent = buttonLabel;
     }
-    el.addEventListener("click", (event) => {
-      if (el.classList.contains("preorder-graphic")) {
-        event.preventDefault();
-      }
-    });
   });
 }
 
-setupPreorder();
+setupBuyLinks("[data-ebook]", EBOOK_URL, EBOOK_LABEL);
+setupBuyLinks("[data-paperback]", PAPERBACK_URL, PAPERBACK_LABEL);
 
 (function initSubscribeEmbed() {
   const embed = document.querySelector(".contact-embed");
