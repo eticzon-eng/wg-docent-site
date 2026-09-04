@@ -592,12 +592,12 @@ a {
   flex-shrink: 0;
 }
 
-.site-footer {
-  padding: 2rem 0 3rem;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.92rem;
+.site-footer a {
+  color: inherit;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
 }
 
 .footer-inner {
