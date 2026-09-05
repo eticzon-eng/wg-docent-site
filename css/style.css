@@ -108,6 +108,131 @@ a {
   font-weight: 700;
 }
 
+.buy-now {
+  background: #131921;
+  color: #faf8f4;
+  padding: 1.35rem 0 1.5rem;
+}
+
+.buy-now-inner {
+  width: min(var(--max), calc(100% - 2rem));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.buy-now-cover {
+  width: 118px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 4px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.buy-now-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.buy-now-eyebrow {
+  margin: 0 0 0.2rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: #ff9900;
+}
+
+.buy-now h2 {
+  margin: 0 0 0.2rem;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  line-height: 1.1;
+}
+
+.buy-now-sub {
+  margin: 0 0 0.95rem;
+  color: rgba(250, 248, 244, 0.82);
+  font-size: 0.98rem;
+}
+
+.amazon-buy-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.amazon-buy {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 88px;
+  padding: 0.85rem 1.1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #111;
+  border: 1px solid #f0c14b;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.amazon-buy:hover {
+  transform: translateY(-2px);
+  filter: brightness(0.97);
+}
+
+.amazon-buy-ebook {
+  background: linear-gradient(#ffe14d, #ffd814);
+}
+
+.amazon-buy-paperback {
+  background: linear-gradient(#ffb84d, #ffa41c);
+  border-color: #e47911;
+}
+
+.amazon-wordmark {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  padding-bottom: 0.55rem;
+  color: #111;
+}
+
+.amazon-smile {
+  position: absolute;
+  left: -0.1rem;
+  right: -0.15rem;
+  bottom: -0.15rem;
+  width: calc(100% + 0.25rem);
+  height: 0.7rem;
+  color: #e47911;
+}
+
+.amazon-buy-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.amazon-buy-label {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.amazon-buy-store {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  color: #333;
+}
+
 .preorder {
   padding: 1.75rem 0 0.5rem;
 }
@@ -809,6 +934,25 @@ a {
 }
 
 @media (max-width: 860px) {
+  .buy-now-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .buy-now-cover {
+    width: 96px;
+    margin: 0 auto;
+  }
+
+  .amazon-buy-row {
+    grid-template-columns: 1fr;
+  }
+
+  .amazon-buy {
+    justify-content: center;
+  }
+
   .hero-grid,
   .two-col,
   .feature-grid {
