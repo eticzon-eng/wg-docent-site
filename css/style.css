@@ -108,6 +108,30 @@ a {
   font-weight: 700;
 }
 
+.review-prompt {
+  background: var(--paper-deep);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+  padding: 0.85rem 1.15rem;
+}
+
+.review-prompt p {
+  margin: 0 auto;
+  max-width: 40rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+.review-prompt a {
+  font-weight: 700;
+  text-underline-offset: 0.16em;
+}
+
+#reviews {
+  scroll-margin-top: 5.75rem;
+}
+
 .buy-now {
   background: #131921;
   color: #faf8f4;
