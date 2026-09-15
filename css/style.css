@@ -521,6 +521,46 @@ a {
   max-width: 42rem;
 }
 
+.reel-feature {
+  text-align: center;
+}
+
+.reel-feature .section-intro {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reel-card {
+  width: min(360px, 100%);
+  margin: 0 auto;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  text-align: left;
+}
+
+.reel-card-gallery {
+  margin-bottom: 2rem;
+}
+
+.reel-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  background: var(--ink);
+  vertical-align: middle;
+}
+
+.reel-card figcaption {
+  padding: 0.75rem 0.9rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .lightbox {
   position: fixed;
   inset: 0;
