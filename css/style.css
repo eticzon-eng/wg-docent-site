@@ -180,6 +180,13 @@ a {
   font-size: 0.98rem;
 }
 
+.buy-now-hardcover {
+  margin: 0.8rem 0 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  color: rgba(250, 248, 244, 0.92);
+}
+
 .amazon-buy-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
