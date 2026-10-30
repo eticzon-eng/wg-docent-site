@@ -5,8 +5,10 @@ if (year) {
 
 const EBOOK_URL = "https://a.co/d/0j0g4wAm";
 const PAPERBACK_URL = "https://www.amazon.com/dp/B0HGTQZ63H";
+const HARDCOVER_URL = "https://www.amazon.com/dp/B0HLV3589G";
 const EBOOK_LABEL = "Buy the ebook";
 const PAPERBACK_LABEL = "Buy the paperback";
+const HARDCOVER_LABEL = "Buy the hardcover";
 
 function setupBuyLinks(selector, url, buttonLabel) {
   document.querySelectorAll(selector).forEach((el) => {
@@ -22,6 +24,7 @@ function setupBuyLinks(selector, url, buttonLabel) {
 
 setupBuyLinks("[data-ebook]", EBOOK_URL, EBOOK_LABEL);
 setupBuyLinks("[data-paperback]", PAPERBACK_URL, PAPERBACK_LABEL);
+setupBuyLinks("[data-hardcover]", HARDCOVER_URL, HARDCOVER_LABEL);
 
 (function initSubscribeEmbed() {
   const embed = document.querySelector(".contact-embed");

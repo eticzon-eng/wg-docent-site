@@ -189,8 +189,8 @@ a {
 
 .amazon-buy-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.85rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
 }
 
 .amazon-buy {
@@ -219,6 +219,11 @@ a {
 .amazon-buy-paperback {
   background: linear-gradient(#ffb84d, #ffa41c);
   border-color: #e47911;
+}
+
+.amazon-buy-hardcover {
+  background: linear-gradient(#f6d78a, #e6b325);
+  border-color: #c8941a;
 }
 
 .amazon-wordmark {
@@ -253,7 +258,7 @@ a {
 
 .amazon-buy-label {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.15;
 }
