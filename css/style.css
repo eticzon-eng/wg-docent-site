@@ -72,6 +72,7 @@ a {
 
 .site-nav {
   display: flex;
+  align-items: center;
   gap: 1.25rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 0.95rem;
@@ -87,6 +88,24 @@ a {
 .site-nav a:hover,
 .site-nav a.active {
   border-bottom-color: var(--ink);
+}
+
+.site-nav a.nav-signup {
+  padding: 0.42rem 0.95rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.site-nav a.nav-signup:hover,
+.site-nav a.nav-signup:focus-visible {
+  background: #000;
+  color: var(--paper);
+  border-color: #000;
+  transform: translateY(-1px);
 }
 
 .launch-banner {
@@ -1160,6 +1179,10 @@ a {
     flex-wrap: wrap;
   }
 
+  .site-nav a.nav-signup {
+    padding: 0.36rem 0.8rem;
+  }
+
   .hero {
     padding-top: 2.5rem;
   }
@@ -1171,5 +1194,16 @@ a {
 
   .connect-banner-actions {
     width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .site-nav {
+    gap: 0.42rem;
+    font-size: 0.8rem;
+  }
+
+  .site-nav a.nav-signup {
+    padding: 0.32rem 0.62rem;
   }
 }
