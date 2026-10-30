@@ -468,8 +468,15 @@ a {
 .hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 3rem;
+  column-gap: 3rem;
+  row-gap: 1.75rem;
   align-items: center;
+}
+
+.hero-grid > .button-row {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  flex-wrap: nowrap;
 }
 
 .eyebrow {
@@ -1154,6 +1161,10 @@ a {
   .two-col,
   .feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-grid > .button-row {
+    flex-wrap: wrap;
   }
 
   .header-inner {
