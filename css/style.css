@@ -909,6 +909,11 @@ a {
   flex-shrink: 0;
 }
 
+.site-footer {
+  padding-top: 3.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .site-footer a {
   color: inherit;
 }
