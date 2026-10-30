@@ -305,6 +305,95 @@ a {
   height: auto;
 }
 
+.launch-block {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-areas:
+    "cover copy"
+    "logo logo";
+  gap: 1.25rem 2.4rem;
+  align-items: center;
+  background: #e0cfbd;
+  padding: 2rem 2.2rem 1.5rem;
+}
+
+.launch-cover {
+  grid-area: cover;
+  width: 220px;
+  justify-self: center;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 14px 32px rgba(26, 26, 26, 0.12);
+}
+
+.launch-copy {
+  grid-area: copy;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.launch-copy h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.launch-by {
+  margin: 0.35rem 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.35rem;
+}
+
+.launch-by::after {
+  content: "";
+  display: block;
+  width: min(100%, 28rem);
+  height: 1px;
+  margin: 0.9rem auto 0;
+  background: rgba(26, 26, 26, 0.28);
+}
+
+.launch-blurb {
+  margin: 0.95rem auto 0;
+  max-width: 34rem;
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+.launch-formats {
+  margin: 1.15rem 0 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.45;
+}
+
+.launch-formats a {
+  text-underline-offset: 0.16em;
+}
+
+.launch-site {
+  margin: 0.45rem 0 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  color: #3a342e;
+}
+
+.launch-logo {
+  grid-area: logo;
+  justify-self: center;
+  width: min(100%, 24rem);
+}
+
+.launch-logo img {
+  width: 100%;
+  height: auto;
+}
+
 .preorder-graphic[aria-disabled="true"] {
   cursor: default;
 }
@@ -1010,6 +1099,19 @@ a {
 }
 
 @media (max-width: 860px) {
+  .launch-block {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "cover"
+      "copy"
+      "logo";
+    padding: 1.4rem 1.1rem 1.2rem;
+  }
+
+  .launch-cover {
+    width: min(220px, 70%);
+  }
+
   .buy-now-inner {
     flex-direction: column;
     align-items: stretch;
