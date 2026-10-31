@@ -690,12 +690,9 @@ a {
   min-width: 0;
   height: auto;
   aspect-ratio: 9 / 16;
+  object-fit: contain;
   background: var(--ink);
   vertical-align: middle;
-}
-
-.reel-video-square {
-  aspect-ratio: 1 / 1;
 }
 
 .reel-card figcaption {
