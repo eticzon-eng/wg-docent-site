@@ -694,10 +694,6 @@ a {
   vertical-align: middle;
 }
 
-.reel-video-square {
-  aspect-ratio: 1 / 1;
-}
-
 .reel-card figcaption {
   padding: 0.75rem 0.9rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
