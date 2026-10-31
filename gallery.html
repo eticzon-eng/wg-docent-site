@@ -108,27 +108,50 @@
         <p class="eyebrow">Illustrated throughout</p>
         <h1>Gallery</h1>
         <p class="lead section-intro">
-          Black-line artwork from <em>Silas and the Wizard</em>. Click any illustration to view it larger.
+          Reels and artwork. Click any illustration to view it larger.
         </p>
       </div>
     </section>
 
-    <section class="section section-alt">
+    <section class="section section-alt" aria-labelledby="reels-heading">
       <div class="section-inner">
-        <figure class="reel-card reel-card-gallery">
-          <video
-            class="reel-video"
-            controls
-            playsinline
-            preload="metadata"
-            poster="assets/gallery/reel-wizard-friend.jpg"
-            width="1080"
-            height="1920"
-          >
-            <source src="assets/gallery/reel-wizard-friend.mp4" type="video/mp4">
-          </video>
-          <figcaption>Silas has a Wizard friend — a short introduction to the story.</figcaption>
-        </figure>
+        <h2 id="reels-heading">Reels</h2>
+        <div class="reel-grid">
+          <figure class="reel-card">
+            <video
+              class="reel-video"
+              controls
+              playsinline
+              preload="metadata"
+              poster="assets/gallery/reel-wizard-friend.jpg"
+              width="1080"
+              height="1920"
+            >
+              <source src="assets/gallery/reel-wizard-friend.mp4" type="video/mp4">
+            </video>
+            <figcaption>Silas has a Wizard friend — a short introduction to the story.</figcaption>
+          </figure>
+          <figure class="reel-card" data-post="1915">
+            <video
+              class="reel-video reel-video-square"
+              controls
+              playsinline
+              preload="metadata"
+              poster="assets/gallery/reel-book-pages.jpg"
+              width="1080"
+              height="1080"
+            >
+              <source src="assets/gallery/reel-book-pages.mp4" type="video/mp4">
+            </video>
+            <figcaption>Pages from the book — ebook, paperback, and hardcover.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="images-heading">
+      <div class="section-inner">
+        <h2 id="images-heading">Images</h2>
         <div class="gallery gallery-page" data-gallery>
           <figure>
             <button class="gallery-thumb" type="button" data-gallery-open aria-label="View larger: Early rendition of Silas and the Wizard">

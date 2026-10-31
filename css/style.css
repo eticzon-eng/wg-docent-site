@@ -668,8 +668,16 @@ a {
   text-align: left;
 }
 
-.reel-card-gallery {
-  margin-bottom: 2rem;
+.reel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.reel-grid .reel-card {
+  margin: 0;
 }
 
 .reel-video {
@@ -679,6 +687,10 @@ a {
   aspect-ratio: 9 / 16;
   background: var(--ink);
   vertical-align: middle;
+}
+
+.reel-video-square {
+  aspect-ratio: 1 / 1;
 }
 
 .reel-card figcaption {
