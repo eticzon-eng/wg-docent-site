@@ -473,7 +473,8 @@ a {
   align-items: center;
 }
 
-.hero-grid > .button-row {
+.hero-grid > .button-row,
+.two-col > .button-row {
   grid-column: 1 / -1;
   margin-top: 0;
   flex-wrap: nowrap;
@@ -1181,7 +1182,8 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .hero-grid > .button-row {
+  .hero-grid > .button-row,
+  .two-col > .button-row {
     flex-wrap: wrap;
   }
 
