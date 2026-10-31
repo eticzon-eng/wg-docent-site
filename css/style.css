@@ -670,7 +670,7 @@ a {
 
 .reel-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: flex-start;
   gap: 1.25rem;
@@ -678,11 +678,16 @@ a {
 
 .reel-grid .reel-card {
   margin: 0;
+  flex: 1 1 0;
+  width: auto;
+  max-width: 360px;
+  min-width: 0;
 }
 
 .reel-video {
   display: block;
   width: 100%;
+  min-width: 0;
   height: auto;
   aspect-ratio: 9 / 16;
   background: var(--ink);
