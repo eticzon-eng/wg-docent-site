@@ -147,6 +147,88 @@ a {
   text-underline-offset: 0.16em;
 }
 
+.printer-banner {
+  background: var(--paper);
+  padding: 0.85rem 0 1rem;
+}
+
+.printer-banner-inner {
+  width: min(var(--max), calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.printer-banner-note {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  color: #7a4e00;
+}
+
+.printer-banner-card {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 0.75rem 1rem;
+  background: #f6d78a;
+  border: 1px solid #c8941a;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.15s ease;
+}
+
+.printer-banner-card:hover {
+  transform: translateY(-1px);
+}
+
+.printer-banner-card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.printer-banner-card img {
+  width: 72px;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.printer-banner-copy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.printer-banner-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.printer-banner-authors {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.printer-banner-buy {
+  flex-shrink: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.7rem 1.15rem;
+  white-space: nowrap;
+}
+
 #reviews {
   scroll-margin-top: 5.75rem;
 }
@@ -1166,6 +1248,32 @@ a {
   .buy-now-cover {
     width: 96px;
     margin: 0 auto;
+  }
+
+  .printer-banner-card {
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .printer-banner-card img {
+    width: 56px;
+  }
+
+  .printer-banner-note {
+    font-size: 0.86rem;
+  }
+
+  .printer-banner-title {
+    font-size: 1.1rem;
+  }
+
+  .printer-banner-authors {
+    font-size: 0.82rem;
+  }
+
+  .printer-banner-buy {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.88rem;
   }
 
   .amazon-buy-row {
