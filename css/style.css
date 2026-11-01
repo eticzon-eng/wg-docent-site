@@ -148,8 +148,8 @@ a {
 }
 
 .printer-banner {
-  background: var(--paper-deep);
-  border-bottom: 1px solid var(--line);
+  background: #f6d78a;
+  border-bottom: 1px solid #c8941a;
   padding: 0.85rem 0 1rem;
 }
 
@@ -172,8 +172,8 @@ a {
   align-items: center;
   gap: 1.15rem;
   padding: 0.75rem 1rem;
-  background: white;
-  border: 1px solid var(--line);
+  background: #f6d78a;
+  border: 1px solid #c8941a;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   text-decoration: none;
