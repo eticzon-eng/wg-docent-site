@@ -148,8 +148,7 @@ a {
 }
 
 .printer-banner {
-  background: #f6d78a;
-  border-bottom: 1px solid #c8941a;
+  background: var(--paper);
   padding: 0.85rem 0 1rem;
 }
 
