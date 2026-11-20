@@ -155,55 +155,60 @@ a {
 .printer-banner-inner {
   width: min(var(--max), calc(100% - 2rem));
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: stretch;
 }
 
-.printer-banner-note {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.98rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.3;
-  color: #7a4e00;
-  text-decoration: underline;
-  text-underline-offset: 0.16em;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.printer-banner-note:hover {
-  color: #4d3100;
-}
-
-.printer-banner-note:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-.printer-banner-card {
-  display: flex;
-  align-items: center;
-  gap: 1.15rem;
-  padding: 0.85rem 1rem;
-  background: #f6d78a;
-  border: 1px solid #c8941a;
+.printer-banner-shop,
+.printer-banner-wholesale {
+  min-width: 0;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  color: var(--ink);
 }
 
-.printer-banner-card img {
+.printer-banner-shop {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 0.9rem 1rem;
+  color: #fff;
+  background:
+    linear-gradient(#161616, #161616) padding-box,
+    linear-gradient(120deg, #25f4ee, #fe2c55) border-box;
+  border: 2px solid transparent;
+}
+
+.printer-banner-shop img {
   width: 72px;
   flex-shrink: 0;
   border-radius: 4px;
 }
 
-.printer-banner-copy {
-  flex: 1;
-  min-width: 0;
+.printer-banner-shop-copy {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.printer-banner-kicker,
+.printer-banner-title {
+  margin: 0;
+}
+
+.printer-banner-kicker {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.printer-banner-shop .printer-banner-kicker {
+  color: #7ef6f2;
 }
 
 .printer-banner-title {
@@ -213,68 +218,74 @@ a {
   line-height: 1.15;
 }
 
-.printer-banner-authors {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.92rem;
-  color: var(--muted);
-}
-
 .printer-banner-tiktok {
-  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.55rem;
+  margin-top: 0.55rem;
+  padding: 0.78rem 1.2rem;
+  background: #f6d78a;
+  color: #1a1a1a;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.15;
   text-decoration: none;
-  background:
-    linear-gradient(#161616, #161616) padding-box,
-    linear-gradient(120deg, #25f4ee, #fe2c55) border-box;
-  border: 2px solid transparent;
   border-radius: 999px;
-  padding: 0.72rem 1.25rem 0.72rem 0.95rem;
-  box-shadow: 0 10px 22px rgba(26, 26, 26, 0.2);
-  transition: transform 0.15s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
 .printer-banner-tiktok:hover {
   transform: translateY(-1px);
-  color: #fff;
+  background: #ffe3a3;
+  color: #1a1a1a;
 }
 
 .printer-banner-tiktok:focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid #fff;
   outline-offset: 3px;
 }
 
 .printer-banner-tiktok svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
-.printer-banner-tiktok-copy {
+.printer-banner-wholesale {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.05rem;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.95rem 1.05rem;
+  background: #f6d78a;
+  border: 1px solid #c8941a;
 }
 
-.printer-banner-tiktok-kicker {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  line-height: 1.2;
-  color: #7ef6f2;
+.printer-banner-wholesale .printer-banner-kicker {
+  color: #7a4e00;
 }
 
-.printer-banner-tiktok-label {
-  font-size: 1.05rem;
+.printer-banner-note {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.02rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  line-height: 1.15;
-  white-space: nowrap;
+  line-height: 1.35;
+  color: #4d3100;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.printer-banner-note:hover {
+  color: #1a1a1a;
+}
+
+.printer-banner-note:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 #reviews {
@@ -1298,41 +1309,26 @@ a {
     margin: 0 auto;
   }
 
-  .printer-banner-card {
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 0.8rem 0.85rem;
+  .printer-banner-inner {
+    grid-template-columns: 1fr;
   }
 
-  .printer-banner-card img {
-    width: 56px;
-  }
-
-  .printer-banner-copy {
-    flex: 1 1 12rem;
-  }
-
-  .printer-banner-note {
-    font-size: 0.88rem;
+  .printer-banner-shop img {
+    width: 64px;
   }
 
   .printer-banner-title {
-    font-size: 1.12rem;
-  }
-
-  .printer-banner-authors {
-    font-size: 0.82rem;
+    font-size: 1.22rem;
   }
 
   .printer-banner-tiktok {
-    flex: 1 1 100%;
+    width: 100%;
     justify-content: center;
-    padding: 0.85rem 1.1rem;
+    box-sizing: border-box;
   }
 
-  .printer-banner-tiktok-label {
-    font-size: 1.02rem;
+  .printer-banner-note {
+    font-size: 0.98rem;
   }
 
   .amazon-buy-row {
