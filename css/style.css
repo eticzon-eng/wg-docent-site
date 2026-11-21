@@ -349,7 +349,7 @@ a {
 
 .amazon-buy-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.7rem;
 }
 
@@ -379,11 +379,6 @@ a {
 .amazon-buy-paperback {
   background: linear-gradient(#ffb84d, #ffa41c);
   border-color: #e47911;
-}
-
-.amazon-buy-hardcover {
-  background: linear-gradient(#f6d78a, #e6b325);
-  border-color: #c8941a;
 }
 
 .amazon-wordmark {
