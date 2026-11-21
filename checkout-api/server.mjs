@@ -1,22 +1,23 @@
 /**
- * Checkout Session API for the hidden Wizard Hat Books test checkout.
+ * Local test checkout for Wizard Hat Books.
  *
- * GitHub Pages cannot run this file. Host it on a server that can keep
- * STRIPE_SECRET_KEY in the environment, then route these paths on
- * https://www.wizardhatbooks.com to that server:
+ * GitHub Pages cannot run this file or hold a Stripe secret key.
+ * www.wizardhatbooks.com can serve the pages, and Pay stays unavailable there
+ * until this process is what answers /api/checkout-session on that host.
  *
- *   POST /api/checkout-session
- *   GET  /api/checkout-session?session_id=CHECKOUT_SESSION_ID
+ * Smallest test, from the repo root, with test keys only (never commit them):
  *
- * Required environment variables (never commit the values):
- *   STRIPE_SECRET_KEY       Stripe test secret key
- *   STRIPE_PUBLISHABLE_KEY  Stripe test publishable key
- *   STRIPE_PRICE_ID         the same book price id the local checkout uses
+ *   STRIPE_SECRET_KEY=... STRIPE_PUBLISHABLE_KEY=... node checkout-api/server.mjs
+ *
+ * Then open http://127.0.0.1:8787/checkout.html
+ * The book price defaults to price_1UdcGw4Hl5YFsJh9v50wkBnl.
+ * Live keys are refused.
  *
  * Optional:
- *   PORT                    default 8787
- *   CHECKOUT_RETURN_URL     default the live confirmation page
- *   STRIPE_API_VERSION      default 2026-03-25.dahlia
+ *   PORT                 default 8787
+ *   STRIPE_PRICE_ID      override the test price id
+ *   CHECKOUT_RETURN_URL  default the local confirmation page
+ *   STRIPE_API_VERSION   default 2026-03-25.dahlia
  *
  * The session uses Stripe API Dahlia with ui_mode=form:
  * billing address required, individual name optional, phone off,
@@ -25,13 +26,18 @@
  */
 
 import http from "node:http";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const US_RATE = "shr_1UeFD14Hl5YFsJh9GGknDIhI";
 const CA_RATE = "shr_1UeFDF4Hl5YFsJh97GTlZXDj";
+const PRICE_ID = "price_1UdcGw4Hl5YFsJh9v50wkBnl";
 const API_VERSION = process.env.STRIPE_API_VERSION || "2026-03-25.dahlia";
-const RETURN_URL = process.env.CHECKOUT_RETURN_URL
-  || "https://www.wizardhatbooks.com/checkout-complete.html?session_id={CHECKOUT_SESSION_ID}";
 const PORT = Number(process.env.PORT || 8787);
+const RETURN_URL = process.env.CHECKOUT_RETURN_URL
+  || ("http://127.0.0.1:" + PORT + "/checkout-complete.html?session_id={CHECKOUT_SESSION_ID}");
 
 const ALLOWED_ORIGINS = new Set([
   "https://www.wizardhatbooks.com",
@@ -53,12 +59,23 @@ function send(res, status, body, origin) {
   res.end(JSON.stringify(body));
 }
 
-function stripeRequest(path, params) {
-  var secret = process.env.STRIPE_SECRET_KEY || "";
-  if (!secret.startsWith("sk_")) {
-    return Promise.reject(new Error("STRIPE_SECRET_KEY is not set to a secret key."));
+function requireTestKey(name, value, prefix) {
+  if (value.startsWith(prefix + "live_")) {
+    var live = new Error(name + " is a live key. This checkout stays on test keys.");
+    live.status = 400;
+    throw live;
   }
-  return fetch("https://api.stripe.com" + path, {
+  if (!value.startsWith(prefix + "test_")) {
+    var missing = new Error(name + " must be a Stripe test key.");
+    missing.status = 500;
+    throw missing;
+  }
+}
+
+function stripeRequest(requestPath, params) {
+  var secret = process.env.STRIPE_SECRET_KEY || "";
+  requireTestKey("STRIPE_SECRET_KEY", secret, "sk_");
+  return fetch("https://api.stripe.com" + requestPath, {
     method: params ? "POST" : "GET",
     headers: {
       Authorization: "Bearer " + secret,
@@ -81,9 +98,9 @@ function stripeRequest(path, params) {
 }
 
 function sessionParams() {
-  var priceId = process.env.STRIPE_PRICE_ID || "";
+  var priceId = process.env.STRIPE_PRICE_ID || PRICE_ID;
   if (!priceId.startsWith("price_")) {
-    throw new Error("STRIPE_PRICE_ID must be the local checkout price id.");
+    throw new Error("STRIPE_PRICE_ID must be the test book price id.");
   }
   var body = new URLSearchParams();
   body.set("mode", "payment");
@@ -144,9 +161,7 @@ function publicOrder(session) {
 
 async function createSession() {
   var publishable = process.env.STRIPE_PUBLISHABLE_KEY || "";
-  if (!publishable.startsWith("pk_")) {
-    throw new Error("STRIPE_PUBLISHABLE_KEY is not set to a publishable key.");
-  }
+  requireTestKey("STRIPE_PUBLISHABLE_KEY", publishable, "pk_");
   var session = await stripeRequest("/v1/checkout/sessions", sessionParams());
   return {
     publishableKey: publishable,
@@ -155,7 +170,7 @@ async function createSession() {
 }
 
 async function readSession(sessionId) {
-  if (!/^cs_(test|live)_[A-Za-z0-9]+$/.test(sessionId)) {
+  if (!/^cs_test_[A-Za-z0-9]+$/.test(sessionId)) {
     var invalid = new Error("session_id is not a Checkout Session id.");
     invalid.status = 400;
     throw invalid;
@@ -172,12 +187,67 @@ async function readSession(sessionId) {
   return publicOrder(session);
 }
 
+var TYPES = {
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".mjs": "text/javascript; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon",
+  ".xml": "application/xml; charset=utf-8",
+  ".txt": "text/plain; charset=utf-8",
+  ".mp4": "video/mp4",
+};
+
+function serveFile(res, pathname) {
+  var rel;
+  try {
+    rel = decodeURIComponent(pathname);
+  } catch (error) {
+    res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Bad path.");
+    return;
+  }
+  if (rel === "/") rel = "/index.html";
+  if (rel.endsWith("/")) rel += "index.html";
+  var filePath = path.resolve(ROOT, "." + rel);
+  var inside = filePath === ROOT || filePath.startsWith(ROOT + path.sep);
+  var name = path.basename(filePath);
+  if (!inside || name.startsWith(".") || rel.includes("\0")) {
+    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Not found.");
+    return;
+  }
+  fs.readFile(filePath, function (error, body) {
+    if (error) {
+      res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end("Not found.");
+      return;
+    }
+    res.writeHead(200, {
+      "Content-Type": TYPES[path.extname(filePath).toLowerCase()] || "application/octet-stream",
+      "Cache-Control": "no-store",
+    });
+    res.end(body);
+  });
+}
+
 const server = http.createServer(function (req, res) {
   var url = new URL(req.url, "http://127.0.0.1");
   var origin = req.headers.origin || "";
 
   if (url.pathname !== "/api/checkout-session") {
-    send(res, 404, { error: "Not found." }, origin);
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      res.writeHead(405, { Allow: "GET, HEAD" });
+      res.end("Method not allowed.");
+      return;
+    }
+    serveFile(res, url.pathname);
     return;
   }
 
