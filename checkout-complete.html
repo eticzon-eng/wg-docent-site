@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order confirmed — Wizard Hat Books</title>
+  <meta name="description" content="Order confirmation for Silas and the Wizard.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="checkout-api" content="/api/checkout-session">
+  <link rel="canonical" href="https://www.wizardhatbooks.com/checkout-complete.html">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="Wizard Hat Books home">
+        <img src="assets/logo-lockup.png" alt="Wizard Hat Books">
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="nav-signup" href="contact.html#subscribe">Sign up</a>
+        <a href="/">Home</a>
+        <a href="book.html">The Book</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="checkout-main">
+    <div class="checkout-panel">
+      <p class="eyebrow">Wizard Hat Books</p>
+      <h1>Order confirmed</h1>
+      <p class="checkout-status" data-order-status hidden></p>
+      <dl class="order-details" data-order-details hidden>
+        <div>
+          <dt>Email</dt>
+          <dd data-order-email></dd>
+        </div>
+        <div>
+          <dt>Shipping address</dt>
+          <dd data-order-address></dd>
+        </div>
+        <div>
+          <dt>Line</dt>
+          <dd data-order-line></dd>
+        </div>
+        <div>
+          <dt>Shipping</dt>
+          <dd data-order-shipping></dd>
+        </div>
+        <div>
+          <dt>Total</dt>
+          <dd data-order-total></dd>
+        </div>
+      </dl>
+      <div data-return-policy></div>
+      <p class="checkout-copyright">© 2026 Wizard Hat Books. All rights reserved.</p>
+    </div>
+  </main>
+
+  <script src="js/return-policy.js"></script>
+  <script src="js/checkout-complete.js"></script>
+</body>
+</html>
