@@ -5,10 +5,10 @@ if (year) {
 
 const EBOOK_URL = "https://a.co/d/0j0g4wAm";
 const PAPERBACK_URL = "https://www.amazon.com/dp/B0HGTQZ63H";
-const HARDCOVER_URL = "https://www.amazon.com/dp/B0HLV3589G";
+const HARDCOVER_URL = "https://www.tiktok.com/view/product/1732809589560545892";
 const EBOOK_LABEL = "Buy the ebook";
 const PAPERBACK_LABEL = "Buy the paperback";
-const HARDCOVER_LABEL = "Buy the hardcover";
+const HARDCOVER_LABEL = "Buy the hardcover on TikTok Shop";
 
 function setupBuyLinks(selector, url, buttonLabel) {
   document.querySelectorAll(selector).forEach((el) => {
