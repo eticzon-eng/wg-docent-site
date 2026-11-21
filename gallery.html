@@ -120,7 +120,7 @@
         <p class="eyebrow">Illustrated throughout</p>
         <h1>Gallery</h1>
         <p class="lead section-intro">
-          Reels and artwork. Click any illustration to view it larger.
+          Reels and artwork. Click a thumbnail to view it full size.
         </p>
       </div>
     </section>
@@ -128,47 +128,26 @@
     <section class="section section-alt" aria-labelledby="reels-heading">
       <div class="section-inner">
         <h2 id="reels-heading">Reels</h2>
-        <div class="reel-grid">
+        <div class="reel-grid" data-reels>
           <figure class="reel-card" data-post="1937">
-            <video
-              class="reel-video"
-              controls
-              playsinline
-              preload="metadata"
-              poster="assets/gallery/reel-tiktok-shop.jpg"
-              width="1080"
-              height="1920"
-            >
-              <source src="assets/gallery/reel-tiktok-shop.mp4" type="video/mp4">
-            </video>
+            <button class="reel-thumb" type="button" data-reel-open data-reel-src="assets/gallery/reel-tiktok-shop.mp4" aria-label="Play reel: Pages from the book — the hardcover edition is on TikTok Shop.">
+              <img src="assets/gallery/reel-tiktok-shop.jpg" alt="" width="1080" height="1920">
+              <span class="reel-play" aria-hidden="true"></span>
+            </button>
             <figcaption>Pages from the book — the hardcover edition is on TikTok Shop.</figcaption>
           </figure>
           <figure class="reel-card" data-post="1917">
-            <video
-              class="reel-video"
-              controls
-              playsinline
-              preload="metadata"
-              poster="assets/gallery/reel-book-pages.jpg"
-              width="1080"
-              height="1920"
-            >
-              <source src="assets/gallery/reel-book-pages.mp4" type="video/mp4">
-            </video>
+            <button class="reel-thumb" type="button" data-reel-open data-reel-src="assets/gallery/reel-book-pages.mp4" aria-label="Play reel: Pages from the book — ebook, paperback, and hardcover.">
+              <img src="assets/gallery/reel-book-pages.jpg" alt="" width="1080" height="1920">
+              <span class="reel-play" aria-hidden="true"></span>
+            </button>
             <figcaption>Pages from the book — ebook, paperback, and hardcover.</figcaption>
           </figure>
           <figure class="reel-card">
-            <video
-              class="reel-video"
-              controls
-              playsinline
-              preload="metadata"
-              poster="assets/gallery/reel-wizard-friend.jpg"
-              width="1080"
-              height="1920"
-            >
-              <source src="assets/gallery/reel-wizard-friend.mp4" type="video/mp4">
-            </video>
+            <button class="reel-thumb" type="button" data-reel-open data-reel-src="assets/gallery/reel-wizard-friend.mp4" aria-label="Play reel: Silas has a Wizard friend — a short introduction to the story.">
+              <img src="assets/gallery/reel-wizard-friend.jpg" alt="" width="1080" height="1920">
+              <span class="reel-play" aria-hidden="true"></span>
+            </button>
             <figcaption>Silas has a Wizard friend — a short introduction to the story.</figcaption>
           </figure>
         </div>
@@ -230,12 +209,13 @@
     </section>
   </main>
 
-  <div class="lightbox" data-lightbox hidden aria-hidden="true">
+  <div class="lightbox" data-lightbox hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery viewer">
     <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close gallery view">&times;</button>
-    <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-prev aria-label="Previous illustration">&lsaquo;</button>
-    <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Next illustration">&rsaquo;</button>
+    <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-prev aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Next">&rsaquo;</button>
     <figure class="lightbox-figure">
       <img class="lightbox-image" src="" alt="" data-lightbox-image>
+      <video class="lightbox-video" data-lightbox-video controls playsinline preload="none" width="1080" height="1920"></video>
       <figcaption class="lightbox-caption" data-lightbox-caption></figcaption>
     </figure>
   </div>

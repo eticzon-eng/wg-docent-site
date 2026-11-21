@@ -87,16 +87,20 @@ setupBuyLinks("[data-hardcover]", HARDCOVER_URL, HARDCOVER_LABEL);
 })();
 
 (function initGalleryLightbox() {
-  const gallery = document.querySelector("[data-gallery]");
   const lightbox = document.querySelector("[data-lightbox]");
-  if (!gallery || !lightbox) return;
+  if (!lightbox) return;
 
   const image = lightbox.querySelector("[data-lightbox-image]");
+  const video = lightbox.querySelector("[data-lightbox-video]");
   const caption = lightbox.querySelector("[data-lightbox-caption]");
   const closeButton = lightbox.querySelector("[data-lightbox-close]");
   const prevButton = lightbox.querySelector("[data-lightbox-prev]");
   const nextButton = lightbox.querySelector("[data-lightbox-next]");
-  const items = Array.from(gallery.querySelectorAll("[data-gallery-open]"));
+  const imageItems = Array.from(document.querySelectorAll("[data-gallery] [data-gallery-open]"));
+  const reelItems = Array.from(document.querySelectorAll("[data-reels] [data-reel-open]"));
+  if (!imageItems.length && !reelItems.length) return;
+
+  let items = [];
   let currentIndex = -1;
   let lastFocused = null;
 
@@ -104,17 +108,48 @@ setupBuyLinks("[data-hardcover]", HARDCOVER_URL, HARDCOVER_LABEL);
     return lightbox.classList.contains("is-open");
   }
 
+  function stopVideo() {
+    if (!video) return;
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+  }
+
   function show(index) {
     if (index < 0 || index >= items.length) return;
     currentIndex = index;
     const button = items[index];
-    const img = button.querySelector("img");
     const figure = button.closest("figure");
-    if (!img) return;
+    const captionText = figure ? (figure.querySelector("figcaption")?.textContent || "") : "";
+    const isReel = button.hasAttribute("data-reel-open");
+    caption.textContent = captionText;
 
-    image.src = img.currentSrc || img.src;
-    image.alt = img.alt;
-    caption.textContent = figure ? (figure.querySelector("figcaption")?.textContent || "") : "";
+    if (isReel) {
+      const poster = button.querySelector("img");
+      const src = button.getAttribute("data-reel-src");
+      if (!video || !src) return;
+      lightbox.classList.add("is-reel");
+      if (image) image.alt = "";
+      video.poster = poster ? (poster.currentSrc || poster.src) : "";
+      video.setAttribute("aria-label", captionText || "Reel");
+      video.src = src;
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === "function") {
+        playAttempt.catch(function () {});
+      }
+      if (prevButton) prevButton.setAttribute("aria-label", "Previous reel");
+      if (nextButton) nextButton.setAttribute("aria-label", "Next reel");
+    } else {
+      const img = button.querySelector("img");
+      if (!img || !image) return;
+      lightbox.classList.remove("is-reel");
+      stopVideo();
+      image.src = img.currentSrc || img.src;
+      image.alt = img.alt;
+      if (prevButton) prevButton.setAttribute("aria-label", "Previous illustration");
+      if (nextButton) nextButton.setAttribute("aria-label", "Next illustration");
+    }
+
     lightbox.hidden = false;
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
@@ -125,27 +160,37 @@ setupBuyLinks("[data-hardcover]", HARDCOVER_URL, HARDCOVER_LABEL);
   function hide() {
     lightbox.hidden = true;
     lightbox.classList.remove("is-open");
+    lightbox.classList.remove("is-reel");
     lightbox.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-    image.removeAttribute("src");
-    image.alt = "";
-    caption.textContent = "";
+    stopVideo();
+    if (image) {
+      image.removeAttribute("src");
+      image.alt = "";
+    }
+    if (caption) caption.textContent = "";
     currentIndex = -1;
+    items = [];
     if (lastFocused) lastFocused.focus();
   }
 
   function showRelative(step) {
-    if (currentIndex < 0) return;
-    const nextIndex = (currentIndex + step + items.length) % items.length;
-    show(nextIndex);
+    if (currentIndex < 0 || !items.length) return;
+    show((currentIndex + step + items.length) % items.length);
   }
 
-  items.forEach(function (button, index) {
-    button.addEventListener("click", function () {
-      lastFocused = button;
-      show(index);
+  function bind(list) {
+    list.forEach(function (button, index) {
+      button.addEventListener("click", function () {
+        items = list;
+        lastFocused = button;
+        show(index);
+      });
     });
-  });
+  }
+
+  bind(imageItems);
+  bind(reelItems);
 
   closeButton?.addEventListener("click", hide);
   prevButton?.addEventListener("click", function () {
@@ -165,7 +210,12 @@ setupBuyLinks("[data-hardcover]", HARDCOVER_URL, HARDCOVER_LABEL);
 
   document.addEventListener("keydown", function (event) {
     if (!isOpen()) return;
-    if (event.key === "Escape") hide();
+    if (event.key === "Escape") {
+      event.preventDefault();
+      hide();
+      return;
+    }
+    if (video && (event.target === video || video.contains(event.target))) return;
     if (event.key === "ArrowLeft") showRelative(-1);
     if (event.key === "ArrowRight") showRelative(1);
   });
