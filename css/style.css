@@ -173,6 +173,7 @@ a {
   gap: 0.95rem;
   padding: 0.9rem 1rem;
   color: #fff;
+  text-decoration: none;
   background:
     linear-gradient(#161616, #161616) padding-box,
     linear-gradient(120deg, #25f4ee, #fe2c55) border-box;
@@ -208,6 +209,10 @@ a {
 
 .printer-banner-shop .printer-banner-kicker {
   color: #7ef6f2;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.35;
 }
 
 .printer-banner-title {
