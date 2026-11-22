@@ -218,10 +218,13 @@ a {
 }
 
 .printer-banner-tiktok {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.55rem;
-  margin-top: 0.55rem;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0;
   padding: 0.78rem 1.2rem;
   background: #f6d78a;
   color: #1a1a1a;
@@ -247,9 +250,13 @@ a {
 }
 
 .printer-banner-tiktok svg {
-  width: 20px;
-  height: 20px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
+}
+
+.printer-banner-tiktok span {
+  min-width: 0;
 }
 
 .printer-banner-note {
