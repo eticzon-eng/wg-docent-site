@@ -173,6 +173,7 @@ a {
   gap: 0.95rem;
   padding: 0.9rem 1rem;
   color: #fff;
+  text-decoration: none;
   background:
     linear-gradient(#161616, #161616) padding-box,
     linear-gradient(120deg, #25f4ee, #fe2c55) border-box;
@@ -208,6 +209,10 @@ a {
 
 .printer-banner-shop .printer-banner-kicker {
   color: #7ef6f2;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.35;
 }
 
 .printer-banner-title {
@@ -218,13 +223,10 @@ a {
 }
 
 .printer-banner-tiktok {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 0;
+  gap: 0.55rem;
+  margin-top: 0.55rem;
   padding: 0.78rem 1.2rem;
   background: #f6d78a;
   color: #1a1a1a;
@@ -250,13 +252,9 @@ a {
 }
 
 .printer-banner-tiktok svg {
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-}
-
-.printer-banner-tiktok span {
-  min-width: 0;
 }
 
 .printer-banner-note {
