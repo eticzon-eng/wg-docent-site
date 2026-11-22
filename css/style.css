@@ -1193,28 +1193,6 @@ a {
   margin-bottom: 1rem;
 }
 
-.page-marks {
-  display: flex;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0 0 0.85rem;
-}
-
-.page-mark {
-  width: 7px;
-  height: 7px;
-  border: 1px solid #b7b1a8;
-  border-radius: 50%;
-}
-
-.page-mark-filled {
-  background: #b7b1a8;
-}
-
-.page-mark-open {
-  background: transparent;
-}
-
 .header-social a,
 .footer-social a {
   display: inline-flex;
