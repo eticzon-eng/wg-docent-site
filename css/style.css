@@ -73,6 +73,7 @@ a {
 .site-nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1.25rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 0.95rem;
@@ -83,6 +84,8 @@ a {
   text-decoration: none;
   padding-bottom: 0.15rem;
   border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .site-nav a:hover,
@@ -106,6 +109,28 @@ a {
   color: var(--paper);
   border-color: #000;
   transform: translateY(-1px);
+}
+
+.site-nav a.nav-linktree {
+  padding: 0.42rem 0.95rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper-deep);
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.site-nav a.nav-linktree:hover,
+.site-nav a.nav-linktree:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.footer-linktree {
+  font-weight: 700;
 }
 
 .launch-banner {
@@ -1509,7 +1534,8 @@ a {
     flex-wrap: wrap;
   }
 
-  .site-nav a.nav-signup {
+  .site-nav a.nav-signup,
+  .site-nav a.nav-linktree {
     padding: 0.36rem 0.8rem;
   }
 
@@ -1533,7 +1559,8 @@ a {
     font-size: 0.8rem;
   }
 
-  .site-nav a.nav-signup {
+  .site-nav a.nav-signup,
+  .site-nav a.nav-linktree {
     padding: 0.32rem 0.62rem;
   }
 }
